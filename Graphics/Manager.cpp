@@ -39,24 +39,11 @@ bool cGraphicsManager::CreateWindow(const int& x, const int& y, const std::strin
 
 	// Call our render stuff
 	{
-		// Shader start-up
+		// Shaders
 		InitalizeShaders();
 
-		// Buffer start-up
+		// Buffers (VAO, VBO) for shapes, etc.
 		InitalizeBuffers();
-
-		//				(x,y)  top right		
-		// bottom left  (0,0)
-		glViewport(0, 0, _windowSize.x, _windowSize.y);
-
-		// Color of background
-		glClearColor(0.90f, 0.50f, 0.50f, 1.0f);
-
-		// Cleaning up the back buffer and assigning a new color to it
-		glClear(GL_COLOR_BUFFER_BIT);
-
-		// Swap the front with our new back buffer.
-		glfwSwapBuffers(_pWindow);
 	}
 
 	// Sucess!
@@ -65,6 +52,19 @@ bool cGraphicsManager::CreateWindow(const int& x, const int& y, const std::strin
 
 void cGraphicsManager::Loop()
 {
+	//				(x,y)  top right		
+	// bottom left  (0,0)
+	glViewport(0, 0, _windowSize.x, _windowSize.y);
+
+	// Color of background
+	glClearColor(0.90f, 0.50f, 0.50f, 1.0f);
+
+	// Cleaning up the back buffer and assigning a new color to it
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	// Swap the front with our new back buffer.
+	glfwSwapBuffers(_pWindow);
+
 	while (!glfwWindowShouldClose(_pWindow))
 	{
 		// Color of background
@@ -74,7 +74,8 @@ void cGraphicsManager::Loop()
 
 		glUseProgram(_shaderProgram);
 		glBindVertexArray(_VAO);
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0);
+
 		glfwSwapBuffers(_pWindow);
 
 		// Handles GLFW events
@@ -103,6 +104,7 @@ cGraphicsManager::~cGraphicsManager()
 	// Cleanup buffers and vertex arrays
 	glDeleteVertexArrays(1, &_VAO);
 	glDeleteBuffers(1, &_VBO);
+	glDeleteBuffers(1, &_EBO);
 	glDeleteProgram(_shaderProgram);
 
 	// Uninitalize GLFW
@@ -132,9 +134,9 @@ void cGraphicsManager::InitalizeShaders()
 	glCompileShader(_vertexShader);
 
 	// Create fragment shader w/ source
-	_fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(_fragmentShader, 1, &fragmentShaderSource, NULL);
-	glCompileShader(_fragmentShader);
+	_fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);					// Creating a Vertex Shader Object and grabbing its &
+	glShaderSource(_fragmentShader, 1, &fragmentShaderSource, NULL);		// Attatch vertex shader source to the Vertex Shader Object
+	glCompileShader(_fragmentShader);										// Compile the Vertex Shader Object to machine code
 
 	// Create and link shader program w/ shaders
 	_shaderProgram = glCreateProgram();
@@ -154,12 +156,25 @@ void cGraphicsManager::InitalizeBuffers()
 	{
 		-0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // Lower left corner
 		0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // Lower right corner
-		0.0f, 0.5f * float(sqrt(3)) * 2 / 3, 0.0f // Upper corner
+		0.0f, 0.5f * float(sqrt(3)) * 2 / 3, 0.0f, // Upper corner
+		-0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, // Inner left
+		0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, // Inner right
+		0.0f, -0.5f * float(sqrt(3)) / 3, 0.0f // Inner down
+	};
+
+	// Indices for vertices order
+	GLuint indices[] =
+	{
+		0, 3, 5, // Lower left triangle
+		3, 2, 4, // Lower right triangle
+		5, 4, 1 // Upper triangle
 	};
 
 	// Generate (vertex) arrays and buffers to VAO, VBO
+	// 1 object
 	glGenVertexArrays(1, &_VAO);
 	glGenBuffers(1, &_VBO);
+	glGenBuffers(1, &_EBO);
 
 	// Bind (vertex) arrays and buffers to VAO, VBO
 	glBindVertexArray(_VAO);
@@ -167,6 +182,9 @@ void cGraphicsManager::InitalizeBuffers()
 
 	// Introducing vertices into the VBO
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	// Configure the vertex attribute so that OpenGL knows how to read the VBO
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (void*)(0));
@@ -176,4 +194,5 @@ void cGraphicsManager::InitalizeBuffers()
 	// Binding the VAO and VBO to prevent accidental modification.
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }

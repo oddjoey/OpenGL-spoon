@@ -1,11 +1,6 @@
 #pragma once
 
-#include <iostream>
-#include <memory>
-#include <string>
-
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "..\Shaders.h"
 
 template <class T>
 struct Vector2
@@ -29,7 +24,7 @@ private:
 	void InitalizeShaders();
 	void InitalizeBuffers();
 
-	GLuint			_VAO, _VBO							= NULL;
+	GLuint			_VAO, _VBO, _EBO					= NULL;
 	GLuint			_vertexShader, _fragmentShader		= NULL;
 	GLuint			_shaderProgram						= NULL;
 	GLFWwindow*		_pWindow							= nullptr;
