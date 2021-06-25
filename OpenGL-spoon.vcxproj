@@ -151,13 +151,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Graphics\EBO.h" />
     <ClInclude Include="Graphics\Manager.h" />
-    <ClInclude Include="Shaders.h" />
+    <ClInclude Include="Graphics\Shaders.h" />
+    <ClInclude Include="Graphics\VBO.h" />
+    <ClInclude Include="Graphics\VAO.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Graphics\EBO.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Graphics\Manager.cpp" />
+    <ClCompile Include="Graphics\VBO.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Graphics\Shaders.cpp" />
+    <ClCompile Include="Graphics\VAO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="default.frag" />
