@@ -1,4 +1,4 @@
-#include "Shaders.h"
+#include "Shader.h"
 
 std::string getFileContents(const char* fileName)
 {
@@ -18,7 +18,7 @@ std::string getFileContents(const char* fileName)
 	throw(errno);
 }
 
-Shaders::Shaders(const char* vertexFile, const char* fragmentFile)
+Shader::Shader(const char* vertexFile, const char* fragmentFile)
 {
 	std::string vertexCode		= getFileContents(vertexFile);
 	std::string fragmentCode	= getFileContents(fragmentFile);
@@ -31,23 +31,26 @@ Shaders::Shaders(const char* vertexFile, const char* fragmentFile)
 	glShaderSource(_vertexShader, 1, &vertexSource, NULL);
 	glCompileShader(_vertexShader);
 	CompileErrors(_vertexShader, "VERTEX");
+
 	// Create fragment shader w/ source
 	_fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);					// Creating a Vertex Shader Object and grabbing its &
-	glShaderSource(_fragmentShader, 1, &fragmentSource, NULL);		// Attatch vertex shader source to the Vertex Shader Object
+	glShaderSource(_fragmentShader, 1, &fragmentSource, NULL);				// Attatch vertex shader source to the Vertex Shader Object
 	glCompileShader(_fragmentShader);										// Compile the Vertex Shader Object to machine code
 	CompileErrors(_fragmentShader, "FRAGMENT");
+
 	// Create and link shader program w/ shaders
 	_ID = glCreateProgram();
 	glAttachShader(_ID, _vertexShader);
 	glAttachShader(_ID, _fragmentShader);
 	glLinkProgram(_ID);
 	CompileErrors(_ID, "PROGRAM");
+
 	// Clean up shaders since they're already loaded into shader program
 	glDeleteShader(_vertexShader);
 	glDeleteShader(_fragmentShader);
 }
 
-void Shaders::CompileErrors(unsigned int shader, const char* type)
+void Shader::CompileErrors(unsigned int shader, const char* type)
 {
 	// Stores status of compilation
 	GLint hasCompiled;
@@ -73,12 +76,17 @@ void Shaders::CompileErrors(unsigned int shader, const char* type)
 	}
 }
 
-void Shaders::Activate()
+void Shader::Activate()
 {
 	glUseProgram(_ID);
 }
 
-void Shaders::Delete()
+void Shader::Delete()
 {
 	glDeleteProgram(_ID);
+}
+
+GLuint Shader::GetID() const
+{
+	return _ID;
 }

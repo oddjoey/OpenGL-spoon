@@ -2,6 +2,7 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <stb/stb_image.h>
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -11,13 +12,17 @@
 
 std::string getFileContents(const char* fileName);
 
-class Shaders
+class Shader
 {
 public:
 	void Activate();
 	void Delete();
+
+	// Returns ID
+	GLuint GetID() const;
+
 	// Builds shaders w/ two different shader sources
-	Shaders(const char* vertexFile, const char* fragmentFile);
+	Shader(const char* vertexFile, const char* fragmentFile);
 private:
 	// Checks if the different Shaders have compiled properly
 	void CompileErrors(unsigned int shader, const char* type);
