@@ -23,6 +23,7 @@ public:
 
 	// Builds shaders w/ two different shader sources
 	Shader(const char* vertexFile, const char* fragmentFile);
+	~Shader();
 private:
 	GLuint _ID = 0;
 	GLuint _vertexShaderID, _fragmentShaderID = 0;

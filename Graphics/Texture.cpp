@@ -53,3 +53,8 @@ Texture::Texture(const char* imageName, GLenum textureType, GLenum slot, GLenum 
 	stbi_image_free(imgBytes);
 	glBindTexture(textureType, 0);
 }
+
+Texture::~Texture()
+{
+	Delete();
+}

@@ -22,3 +22,8 @@ EBO::EBO(GLuint* indices, GLsizeiptr size, GLenum dataType)
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, indices, dataType);
 	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
+
+EBO::~EBO()
+{
+	Delete();
+}

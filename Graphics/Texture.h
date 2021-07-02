@@ -13,7 +13,7 @@ public:
 	void Delete();
 
 	Texture(const char* imageName, GLenum textureType, GLenum slot, GLenum format, GLenum pixelType);
-
+	~Texture();
 private:
 	GLuint _ID		= 0;
 	GLenum _type	= 0;

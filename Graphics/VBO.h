@@ -10,6 +10,7 @@ public:
 	void Unbind();
 	void Delete();
 	VBO(GLfloat* vertices, GLsizeiptr size, GLenum dataType);
+	~VBO();
 private:
 	// Reference ID of the Vertex Buffer Object
 	GLuint _ID = 0;

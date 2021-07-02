@@ -17,48 +17,25 @@ bool cGraphicsManager::CreateWindow(const int& x, const int& y, const std::strin
 	if (_pWindow == nullptr)
 	{
 		std::cout << "Failed to create GLFW window!\n";
+		glfwTerminate();
 		return false;
 	}
 
-	// HMM..
+	// Make context of our window the main context on the current thread
 	glfwMakeContextCurrent(_pWindow);
 
-	// Load GLAD to config OpenGL
-	gladLoadGL();
+	// Register our callback function for window resizing purposes
+	glfwSetFramebufferSizeCallback(_pWindow, framebuffer_size_callback);
 
-	//				(x,y)  top right		
-	// bottom left  (0,0)
-	glViewport(0, 0, _windowSize.x, _windowSize.y);
+	// Load GLAD to config OpenGL
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	{
+		std::cout << "Failed to initialize GLAD!\n";
+		return false;
+	}
 
 	// Sucess!
 	return true;
-	//// Set settings up for GLFW and our GM
-	//_windowSize = { x , y };
-	//_windowTitle = title;
-	//_pWindow = glfwCreateWindow(x, y, title.c_str(), NULL, NULL);
-
-	//if (_pWindow == nullptr)
-	//{
-	//	std::cout << "Failed to create GLFW window!\n";
-	//	glfwTerminate();
-	//	return false;
-	//}
-
-	//// Make context of our window the main context on the current thread
-	//glfwMakeContextCurrent(_pWindow);
-
-	//// Register our callback function for window resizing purposes
-	//glfwSetFramebufferSizeCallback(_pWindow, framebuffer_size_callback);
-
-	//// Load GLAD to config OpenGL
-	//if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-	//{
-	//	std::cout << "Failed to initialize GLAD!\n";
-	//	return false;
-	//}
-
-	//// Sucess!
-	//return true;
 }
 
 void cGraphicsManager::ProcessInput()

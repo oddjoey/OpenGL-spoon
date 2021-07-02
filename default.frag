@@ -1,9 +1,12 @@
 #version 330 core
 
-// Output color (RGBA)
-out vec4 FragColor;
+// Input from previous shader (vertex)
+in vec3 vertexColor;
+
+// Fragment shaders NEED a color/vec4 output to produce a final pixel color
+out vec4 colorOutput;
 
 void main()
 {
-   FragColor = vec4(1.0f, 0.5f, 0.5f, 1.0f);
+   colorOutput = vec4(vertexColor, 1.0f);
 }

@@ -12,7 +12,7 @@ public:
 	void Delete();
 	// Generate a VAO ID
 	VAO();
-
+	~VAO();
 private:
 	// Reference ID for the Vertex Array Object
 	GLuint _ID;

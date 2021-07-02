@@ -37,3 +37,8 @@ VBO::VBO(GLfloat* vertices, GLsizeiptr size, GLenum dataType)
 	// Unbind buffer to prevent unwanted modification
 	//glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
+
+VBO::~VBO()
+{
+	Delete();
+}

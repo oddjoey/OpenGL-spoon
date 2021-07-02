@@ -27,3 +27,8 @@ VAO::VAO()
 {
 	glGenVertexArrays(1, &_ID);
 }
+
+VAO::~VAO()
+{
+	Delete();
+}
