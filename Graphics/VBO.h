@@ -2,14 +2,14 @@
 
 #include <glad/glad.h>
 
+// Store vertices in GPU memory
 class VBO
 {
 public:
 	void Bind();
 	void Unbind();
 	void Delete();
-	// Generates a Vertex Buffer Object and links vertices
-	VBO(GLfloat* vertices, GLsizeiptr size);
+	VBO(GLfloat* vertices, GLsizeiptr size, GLenum dataType);
 private:
 	// Reference ID of the Vertex Buffer Object
 	GLuint _ID = 0;

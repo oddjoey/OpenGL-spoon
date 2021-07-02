@@ -37,8 +37,8 @@ Texture::Texture(const char* imageName, GLenum textureType, GLenum slot, GLenum 
 	glActiveTexture(slot);																// Assign texture to slot
 	glBindTexture(textureType, _ID);													// Type of texture
 
-	glTexParameteri(textureType, GL_TEXTURE_MIN_FILTER, GL_NEAREST);							// How our texture is scaled
-	glTexParameteri(textureType, GL_TEXTURE_MAG_FILTER, GL_NEAREST);							//	
+	glTexParameteri(textureType, GL_TEXTURE_MIN_FILTER, GL_LINEAR);							// How our texture is scaled
+	glTexParameteri(textureType, GL_TEXTURE_MAG_FILTER, GL_LINEAR);							//	
 
 	// Extra lines in case you choose to use GL_CLAMP_TO_BORDER
 	// float flatColor[] = {1.0f, 1.0f, 1.0f, 1.0f};
