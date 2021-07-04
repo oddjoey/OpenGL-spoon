@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Graphics\Camera.h" />
     <ClInclude Include="Graphics\EBO.h" />
     <ClInclude Include="Graphics\Manager.h" />
     <ClInclude Include="Graphics\Shader.h" />
@@ -159,6 +160,7 @@
     <ClInclude Include="Graphics\VAO.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Graphics\Camera.cpp" />
     <ClCompile Include="Graphics\EBO.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Graphics\Manager.cpp" />

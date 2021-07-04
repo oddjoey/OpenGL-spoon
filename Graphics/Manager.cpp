@@ -12,9 +12,9 @@ bool cGraphicsManager::CreateWindow(const int& x, const int& y, const std::strin
 	// Set settings up for GLFW and our GM
 	_windowSize = { x , y };
 	_windowTitle = title;
-	_pWindow = glfwCreateWindow(x, y, title.c_str(), NULL, NULL);
+	_window = glfwCreateWindow(x, y, title.c_str(), NULL, NULL);
 
-	if (_pWindow == nullptr)
+	if (_window == nullptr)
 	{
 		std::cout << "Failed to create GLFW window!\n";
 		glfwTerminate();
@@ -22,10 +22,10 @@ bool cGraphicsManager::CreateWindow(const int& x, const int& y, const std::strin
 	}
 
 	// Make context of our window the main context on the current thread
-	glfwMakeContextCurrent(_pWindow);
+	glfwMakeContextCurrent(_window);
 
 	// Register our callback function for window resizing purposes
-	glfwSetFramebufferSizeCallback(_pWindow, framebuffer_size_callback);
+	glfwSetFramebufferSizeCallback(_window, framebuffer_size_callback);
 
 	// Load GLAD to config OpenGL
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -40,8 +40,16 @@ bool cGraphicsManager::CreateWindow(const int& x, const int& y, const std::strin
 
 void cGraphicsManager::ProcessInput()
 {
-	//if (glfwGetKey(_pWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-	//	glfwSetWindowShouldClose(_pWindow, true);
+	double newCameraSpeed = _camera->GetSpeed() * _deltaTime;
+
+	if (glfwGetKey(_window, GLFW_KEY_W) == GLFW_PRESS)
+		_camera->SetPosition(_camera->GetPosition() + (GLfloat)(newCameraSpeed) * _camera->GetFront());
+	if (glfwGetKey(_window, GLFW_KEY_S) == GLFW_PRESS)
+		_camera->SetPosition(_camera->GetPosition() - (GLfloat)(newCameraSpeed)* _camera->GetFront());
+	if (glfwGetKey(_window, GLFW_KEY_A) == GLFW_PRESS)
+		_camera->SetPosition(_camera->GetPosition() - glm::normalize(glm::cross(_camera->GetFront(), _camera->GetUp())) * (GLfloat)(newCameraSpeed));
+	if (glfwGetKey(_window, GLFW_KEY_D) == GLFW_PRESS)
+		_camera->SetPosition(_camera->GetPosition() + glm::normalize(glm::cross(_camera->GetFront(), _camera->GetUp())) * (GLfloat)(newCameraSpeed));
 }
 
 Vector2<int> cGraphicsManager::GetScreenSize() const
@@ -51,7 +59,7 @@ Vector2<int> cGraphicsManager::GetScreenSize() const
 
 GLFWwindow* cGraphicsManager::GetWindowHandle() const
 {
-	return _pWindow;
+	return _window;
 }
 
 cGraphicsManager::cGraphicsManager()
@@ -68,12 +76,45 @@ cGraphicsManager::cGraphicsManager()
 cGraphicsManager::~cGraphicsManager()
 {
 	// Uninitalize GLFW
-	glfwDestroyWindow(_pWindow);
+	glfwDestroyWindow(_window);
 	glfwTerminate();
 
 	// Cleanup
 	if (_pGM != nullptr)
 		_pGM = nullptr;
+}
+
+void cGraphicsManager::SetDeltaTime(double newDelta)
+{
+	_deltaTime = newDelta;
+}
+
+double cGraphicsManager::GetDeltaTime()
+{
+	return _deltaTime;
+}
+
+void cGraphicsManager::SetLastFrame(double newLastFrame)
+{
+	_lastFrame = newLastFrame;
+}
+
+double cGraphicsManager::GetLastFrame()
+{
+	return _lastFrame;
+}
+
+Camera* cGraphicsManager::CreateCamera()
+{
+	if (_camera == nullptr)
+		_camera = std::make_shared<Camera>();
+
+	return _camera.get();
+}
+
+Camera* cGraphicsManager::GetCamera()
+{
+	return _camera.get();
 }
 
 std::shared_ptr<cGraphicsManager> cGraphicsManager::Get()

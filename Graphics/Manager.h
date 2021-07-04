@@ -14,6 +14,7 @@
 #include "VBO.h"
 #include "VAO.h"
 #include "EBO.h"
+#include "Camera.h"
 
 template <class T>
 struct Vector2
@@ -36,12 +37,24 @@ public:
 	cGraphicsManager();
 	~cGraphicsManager();
 
+	void SetDeltaTime(double newDelta);
+	double GetDeltaTime();
+
+	void SetLastFrame(double newLastFrame);
+	double GetLastFrame();
+
+	Camera* CreateCamera();
+	Camera* GetCamera();
+
 	static std::shared_ptr<cGraphicsManager> Get();
 private:
 
-	GLFWwindow*		_pWindow							= nullptr;
-	Vector2<int>	_windowSize							= {};
-	std::string		_windowTitle						= "";
+	GLFWwindow*				_window								= nullptr;
+	Vector2<int>			_windowSize							= {};
+	std::string				_windowTitle						= "";
+	std::shared_ptr<Camera>	_camera								= nullptr;
+	double					_deltaTime							= 0.0f;
+	double					_lastFrame							= 0.0f;
 
 	static std::shared_ptr<cGraphicsManager> _pGM;
 };

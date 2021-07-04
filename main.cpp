@@ -24,35 +24,35 @@ int main()
 		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f,
 		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 1.0f,
 		-0.5f, -0.5f, -0.5f,  0.0f, 0.0f, 1.0f,
-										  
+
 		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 1.0f,
 		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 1.0f,
 		 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f,
 		 0.5f,  0.5f,  0.5f,  1.0f, 1.0f, 1.0f,
 		-0.5f,  0.5f,  0.5f,  0.0f, 1.0f, 1.0f,
 		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 1.0f,
-										  
+
 		-0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 1.0f,
 		-0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f,
 		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 1.0f,
 		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 1.0f,
 		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 1.0f,
 		-0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 1.0f,
-										  
+
 		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 1.0f,
 		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f,
 		 0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 1.0f,
 		 0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 1.0f,
 		 0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 1.0f,
 		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 1.0f,
-										  
+
 		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 1.0f,
 		 0.5f, -0.5f, -0.5f,  1.0f, 1.0f, 1.0f,
 		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 1.0f,
 		 0.5f, -0.5f,  0.5f,  1.0f, 0.0f, 1.0f,
 		-0.5f, -0.5f,  0.5f,  0.0f, 0.0f, 1.0f,
 		-0.5f, -0.5f, -0.5f,  0.0f, 1.0f, 1.0f,
-										  
+
 		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 1.0f,
 		 0.5f,  0.5f, -0.5f,  1.0f, 1.0f, 1.0f,
 		 0.5f,  0.5f,  0.5f,  1.0f, 0.0f, 1.0f,
@@ -61,14 +61,12 @@ int main()
 		-0.5f,  0.5f, -0.5f,  0.0f, 1.0f, 1.0f
 	};
 
-	// VBO data?
+	// Scene data
 	VAO vao;
 	vao.Bind();
 
-	// Vertex data
+	// Object data
 	VBO vbo(vertices, sizeof(vertices), GL_STATIC_DRAW);
-
-	// Index data
 	//EBO ebo(indices, sizeof(indices), GL_STATIC_DRAW);
 
 	// Position attribute
@@ -78,6 +76,16 @@ int main()
 
 	// Prevent modification
 	vao.Unbind();
+
+	/************************************************************************
+	*************************************************************************
+	************************************************************************/
+
+	Camera* camera = pGM->CreateCamera();
+	camera->SetPosition(glm::vec3(0.0f, 0.0f, 3.0f));
+	camera->SetFront(glm::vec3(0.0f, 0.0f, -1.0f));
+	camera->SetUp(glm::vec3(0.0f, 1.0f, 0.0f));
+	camera->SetSpeed(3.0f);
 
 	/************************************************************************
 	*************************************************************************
@@ -93,20 +101,25 @@ int main()
 	// Our "render loop" used for our drawing purposes and to prevent our application from closing immediately
 	while (!glfwWindowShouldClose(pGM->GetWindowHandle()))
 	{
+		double currentFrame = glfwGetTime();
+		pGM->SetDeltaTime(currentFrame - pGM->GetLastFrame());
+		pGM->SetLastFrame(currentFrame);
+
 		// Process inputs from our window
 		pGM->ProcessInput();
 
 		/************************************************************************
 		****							GOING 3D							 ****
 		************************************************************************/
-		/* MODEL MATRIX - Object orientation */ 
+
+		/* MODEL MATRIX - Object orientation */
 		glm::mat4 model = glm::mat4(1.0f);	// Identity matrix
 		model = glm::rotate(model, (GLfloat)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));
 
 		/* VIEW MATRIX - Camera orientation */
 		glm::mat4 view = glm::mat4(1.0f);
-		// Moving scene forwards to simulate camera moving back
-		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -5.0f));
+		// Moving model forwards to simulate camera moving back
+		view = glm::lookAt(camera->GetPosition(), camera->GetPosition() + camera->GetFront(), camera->GetUp());
 
 		/* PROJECTION MATRIX - Perspective */
 		// Perspective projection, 45 fov, near clip 0.1, far clip 100
