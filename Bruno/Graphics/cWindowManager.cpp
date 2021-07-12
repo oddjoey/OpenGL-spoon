@@ -1,4 +1,4 @@
-#include "Window.h"
+#include "cWindowManager.h"
 
 std::shared_ptr<cWindowManager> cWindowManager::_instance = nullptr;
 
@@ -104,6 +104,17 @@ void cWindowManager::CalculateDeltaTime()
 
 void cWindowManager::Render()
 {
+	auto worldManager = cWorldManager::Get();
+	auto objectManager = worldManager->GetObjectManager();
+
+	for (auto i = 0; i < objectManager->GetNumberOfObjects(); i++)
+	{
+		auto object = objectManager->GetObject(i);
+		auto position = object->GetPosition();
+
+		//printf("[%i] -> %f, %f, %f\n", i, position.x, position.y, position.z);
+	}
+
 	// Swaping the front for the back buffer
 	glfwSwapBuffers(_window);
 }
@@ -118,7 +129,12 @@ void cWindowManager::ProcessEvents()
 	glfwPollEvents();
 }
 
-glm::vec2 cWindowManager::GetScreenSize(eSize type) const
+double cWindowManager::GetDeltaTime() const
+{
+	return _deltaTime;
+}
+
+glm::vec2 cWindowManager::GetScreenSize(const eSize& type) const
 {
 	if (type == eSize::FULL)
 		return _windowSize;
@@ -160,9 +176,4 @@ std::shared_ptr<cWindowManager> cWindowManager::Get()
 		_instance = std::make_shared<cWindowManager>();
 
 	return _instance;
-}
-
-double cWindowManager::GetDeltaTime()
-{
-	return _deltaTime;
 }

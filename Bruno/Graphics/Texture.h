@@ -7,12 +7,12 @@
 class Texture
 {
 public:
-	void SetUniform(Shader& shader, const char* uniformName, GLuint value);
+	void SetUniform(Shader& shader, const char* uniformName, const GLuint& value);
 	void Bind();
 	void Unbind();
 	void Delete();
 
-	Texture(const char* imageName, GLenum textureType, GLenum slot, GLenum format, GLenum pixelType);
+	Texture(const char* imageName, const GLenum& textureType, const GLenum& slot, const GLenum& format, const GLenum& pixelType);
 	~Texture();
 private:
 	GLuint _ID		= 0;

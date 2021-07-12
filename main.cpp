@@ -3,28 +3,32 @@
 int main()
 {
 	auto engine = cBrunoEngine::GetEngine();
-	auto window = engine->GetWindowManager();
-	auto world = engine->GetWorldManager();
+	auto windowManager = engine->GetWindowManager();
+	auto worldManager = engine->GetWorldManager();
+	auto objectManager = worldManager->GetObjectManager();
 
-	if (!window->CreateWindow())
+	if (!windowManager->CreateWindow())
 	{
 		// TODO: ERROR MSG
 		return -1;
 	}
 
+	auto object = objectManager->CreateObject<Object>();
+	auto cube	= objectManager->CreateObject<Cube>();
+
 	// Main game loop
-	while (!window->ShouldClose())
+	while (!windowManager->ShouldClose())
 	{
 		// Calculate deltaTime
-		window->CalculateDeltaTime();
+		windowManager->CalculateDeltaTime();
 
 		// Process keyboard input
-		window->ProcessEvents();
+		windowManager->ProcessKeyboard();
 
 		// Render
-		window->Render();
+		windowManager->Render();
 
 		// Handles events (inputs, window state, callbacks)
-		window->ProcessEvents();
+		windowManager->ProcessEvents();
 	}
 }

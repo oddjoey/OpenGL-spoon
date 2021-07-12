@@ -18,7 +18,7 @@ std::string getFileContents(const char* fileName)
 	throw(errno);
 }
 
-void CheckCompileErrors(unsigned int shader, const char* type)
+void CheckCompileErrors(const unsigned int& shader, const char* type)
 {
 	// Stores status of compilation
 	GLint hasCompiled;

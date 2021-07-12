@@ -2,8 +2,8 @@
 
 #include <memory>
 
-#include "Graphics/Window.h"
-#include "World/World.h"
+#include "Graphics/cWindowManager.h"
+#include "World/cWorldManager.h"
 
 class cBrunoEngine
 {

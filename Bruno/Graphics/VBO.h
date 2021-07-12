@@ -9,7 +9,7 @@ public:
 	void Bind();
 	void Unbind();
 	void Delete();
-	VBO(GLfloat* vertices, GLsizeiptr size, GLenum dataType);
+	VBO(GLfloat* vertices, const GLsizeiptr& size, const GLenum& dataType);
 	~VBO();
 private:
 	// Reference ID of the Vertex Buffer Object

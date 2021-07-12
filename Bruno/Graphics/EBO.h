@@ -9,7 +9,7 @@ public:
 	void Unbind();
 	void Delete();
 	// Generates an Elements Buffer Object and links indices
-	EBO(GLuint* indices, GLsizeiptr size, GLenum dataType);
+	EBO(GLuint* indices, const GLsizeiptr& size, const GLenum& dataType);
 	~EBO();
 private:
 	// ID reference of the Elements Buffer Object

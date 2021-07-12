@@ -21,7 +21,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bruno\Graphics\Window.h">
+    <ClInclude Include="Bruno\Graphics\cWindowManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Bruno\Graphics\Shader.h">
@@ -45,18 +45,24 @@
     <ClInclude Include="Bruno\Bruno.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bruno\Graphics\Input.h">
+    <ClInclude Include="Bruno\Graphics\cInputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bruno\World\World.h">
+    <ClInclude Include="Bruno\World\cWorldManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bruno\aixlog.h">
+    <ClInclude Include="Bruno\World\cObjectManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bruno\World\Object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bruno\World\Cube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Bruno\Graphics\Window.cpp">
+    <ClCompile Include="Bruno\Graphics\cWindowManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mainn.cpp">
@@ -77,7 +83,7 @@
     <ClCompile Include="Bruno\Graphics\VAO.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="stb.cpp">
+    <ClCompile Include="Libraries\stb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Bruno\Graphics\Texture.cpp">
@@ -89,13 +95,22 @@
     <ClCompile Include="Bruno\Bruno.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bruno\Graphics\Input.cpp">
+    <ClCompile Include="Bruno\Graphics\cInputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bruno\World\World.cpp">
+    <ClCompile Include="Bruno\World\cWorldManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bruno\World\cObjectManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bruno\World\Object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bruno\World\Cube.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

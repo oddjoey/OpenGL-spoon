@@ -1,11 +1,11 @@
-#include "Input.h"
+#include "cInputManager.h"
 
 glm::vec2 cInputManager::getWASD() const
 {
 	return _wasd;
 }
 
-void cInputManager::setMousePosition(glm::vec2 newMousePosition)
+void cInputManager::setMousePosition(const glm::vec2& newMousePosition)
 {
 	_mousePosition = newMousePosition;
 }

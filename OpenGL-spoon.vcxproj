@@ -151,33 +151,38 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Bruno\aixlog.h" />
     <ClInclude Include="Bruno\Bruno.h" />
     <ClInclude Include="Bruno\World\Camera.h" />
     <ClInclude Include="Bruno\Graphics\EBO.h" />
-    <ClInclude Include="Bruno\Graphics\Window.h" />
+    <ClInclude Include="Bruno\Graphics\cWindowManager.h" />
     <ClInclude Include="Bruno\Graphics\Shader.h" />
     <ClInclude Include="Bruno\Graphics\Texture.h" />
     <ClInclude Include="Bruno\Graphics\VBO.h" />
     <ClInclude Include="Bruno\Graphics\VAO.h" />
-    <ClInclude Include="Bruno\Graphics\Input.h" />
-    <ClInclude Include="Bruno\World\World.h" />
+    <ClInclude Include="Bruno\Graphics\cInputManager.h" />
+    <ClInclude Include="Bruno\World\cWorldManager.h" />
+    <ClInclude Include="Bruno\World\cObjectManager.h" />
+    <ClInclude Include="Bruno\World\Object.h" />
+    <ClInclude Include="Bruno\World\Cube.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bruno\Bruno.cpp" />
     <ClCompile Include="Bruno\World\Camera.cpp" />
     <ClCompile Include="Bruno\Graphics\EBO.cpp" />
-    <ClCompile Include="Bruno\Graphics\Input.cpp" />
-    <ClCompile Include="Bruno\World\World.cpp" />
+    <ClCompile Include="Bruno\Graphics\cInputManager.cpp" />
+    <ClCompile Include="Bruno\World\cWorldManager.cpp" />
+    <ClCompile Include="Bruno\World\cObjectManager.cpp" />
+    <ClCompile Include="Bruno\World\Cube.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Libraries\glad.c" />
-    <ClCompile Include="Bruno\Graphics\Window.cpp" />
+    <ClCompile Include="Bruno\Graphics\cWindowManager.cpp" />
     <ClCompile Include="Bruno\Graphics\Texture.cpp" />
     <ClCompile Include="Bruno\Graphics\VBO.cpp" />
     <ClCompile Include="mainn.cpp" />
     <ClCompile Include="Bruno\Graphics\Shader.cpp" />
     <ClCompile Include="Bruno\Graphics\VAO.cpp" />
-    <ClCompile Include="stb.cpp" />
+    <ClCompile Include="Bruno\World\Object.cpp" />
+    <ClCompile Include="Libraries\stb.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="default.frag" />

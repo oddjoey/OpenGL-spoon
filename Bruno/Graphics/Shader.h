@@ -10,7 +10,7 @@
 
 std::string getFileContents(const char* fileName);
 // Checks if the different Shaders have compiled properly
-void CheckCompileErrors(unsigned int shader, const char* type);
+void CheckCompileErrors(const unsigned int& shader, const char* type);
 
 class Shader
 {

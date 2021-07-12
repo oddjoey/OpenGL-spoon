@@ -11,7 +11,7 @@
 class cInputManager
 {
 public:
-	void setMousePosition(glm::vec2 newMousePosition);
+	void setMousePosition(const glm::vec2& newMousePosition);
 	glm::vec2 getMousePosition() const;
 
 	glm::vec2 getWASD() const;

@@ -1,11 +1,11 @@
 #include "VAO.h"
 
-void VAO::LinkAttrib(VBO& vbo, GLuint index, GLuint numOfComponents, GLenum type, GLenum normalize, GLsizei stride, void* offset)
+void VAO::LinkAttrib(VBO& VBO, const GLuint& index, const GLuint& numOfComponents, const GLenum& type, const GLenum& normalize, const GLsizei& stride, void* offset)
 {
-	vbo.Bind();
+	VBO.Bind();
 	glVertexAttribPointer(index, numOfComponents, type, normalize, stride, offset);
 	glEnableVertexAttribArray(index);
-	vbo.Unbind();
+	VBO.Unbind();
 }
 
 void VAO::Bind()

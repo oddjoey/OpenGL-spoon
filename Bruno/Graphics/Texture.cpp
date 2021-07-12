@@ -1,6 +1,6 @@
 #include "Texture.h"
 
-void Texture::SetUniform(Shader& shader, const char* uniformName, GLuint value)
+void Texture::SetUniform(Shader& shader, const char* uniformName, const GLuint& value)
 {
 	// Gets the location of the uniform
 	GLuint texUni = glGetUniformLocation(shader.GetID(), uniformName);
@@ -25,7 +25,7 @@ void Texture::Delete()
 	glDeleteTextures(1, &_ID);
 }
 
-Texture::Texture(const char* imageName, GLenum textureType, GLenum slot, GLenum format, GLenum pixelType)
+Texture::Texture(const char* imageName, const GLenum& textureType, const GLenum& slot, const GLenum& format, const GLenum& pixelType)
 {
 	/* Texture Stuffs */
 	_type = textureType;

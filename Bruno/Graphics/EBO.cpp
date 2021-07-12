@@ -15,7 +15,7 @@ void EBO::Delete()
 	glDeleteBuffers(1, &_ID);
 }
 
-EBO::EBO(GLuint* indices, GLsizeiptr size, GLenum dataType)
+EBO::EBO(GLuint* indices, const GLsizeiptr& size, const GLenum& dataType)
 {
 	glGenBuffers(1, &_ID);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ID);

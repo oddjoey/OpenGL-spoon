@@ -15,7 +15,7 @@ void VBO::Delete()
 	glDeleteBuffers(1, &_ID);
 }
 
-VBO::VBO(GLfloat* vertices, GLsizeiptr size, GLenum dataType)
+VBO::VBO(GLfloat* vertices, const GLsizeiptr& size, const GLenum& dataType)
 {
 	// Generate a vertex buffer object
 	glGenBuffers(1, &_ID);

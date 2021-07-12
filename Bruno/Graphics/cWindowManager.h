@@ -16,7 +16,9 @@
 #include "VAO.h"
 #include "EBO.h"
 
-#include "Input.h"
+#include "cInputManager.h"
+
+#include "..\World\cWorldManager.h"
 
 // Mouse positon callback
 void ProcessMouseCallback(GLFWwindow* window, double xpos, double ypos);
@@ -37,9 +39,8 @@ public:
 
 	friend void ProcessMouseCallback(GLFWwindow* window, double xpos, double ypos);
 
-	double GetDeltaTime();
-
-	glm::vec2 GetScreenSize(eSize type) const;
+	double GetDeltaTime() const;
+	glm::vec2 GetScreenSize(const eSize& type) const;
 	GLFWwindow* GetWindowHandle() const;
 
 	bool ShouldClose() const;
@@ -49,6 +50,7 @@ public:
 	void HideCursor();
 
 	bool CreateWindow(const int& x = 800, const int& y = 800, const std::string& title = "OpenGL-kowy");
+
 	void CalculateDeltaTime();
 	void Render();
 	void ProcessKeyboard();
