@@ -17,8 +17,6 @@ glm::vec2 cInputManager::getMousePosition() const
 
 void cInputManager::ProcessKeyboard(GLFWwindow* window)
 {
-
-
 	//double newCameraSpeed = _camera->GetSpeed() * _deltaTime;
 
 	//auto front = _camera->GetFront();
@@ -35,7 +33,7 @@ void cInputManager::ProcessKeyboard(GLFWwindow* window)
 
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, true);
-
+	
 	_wasd = { 0.0f, 0.0f };
 
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)

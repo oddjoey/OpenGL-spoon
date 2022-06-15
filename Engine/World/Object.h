@@ -1,15 +1,14 @@
 #pragma once
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include <iostream>
 #include <glm/glm/glm.hpp>
-#include <glm/glm/gtc/matrix_transform.hpp>
-#include <glm/glm/gtc/type_ptr.hpp>
+
+#include "../Graphics/Model.h"
 
 class Object
 {
+	Object() = delete;
 public:
-	Object();
 	Object(const size_t& index);
 	~Object();
 
@@ -17,10 +16,14 @@ public:
 
 	glm::vec3 GetPosition() const;
 	Object* SetPosition(const glm::vec3& newPosition);
+
+	std::shared_ptr<Model> GetModel() const;
+	Object* SetModel(const std::shared_ptr<Model>& model);
+
 private:
 	glm::vec3 _position = {};
 	size_t _index = 0;
 protected:
-	GLfloat* _vertices = nullptr;
+	std::shared_ptr<Model> _model = nullptr;
 };
 

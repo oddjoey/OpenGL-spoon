@@ -3,10 +3,7 @@
 #include <vector>
 #include <memory>
 
-#include "Object.h"
 #include "Cube.h"
-
-using ObjectList_t	= std::vector<Object*>;
 
 class cObjectManager
 {
@@ -16,9 +13,9 @@ public:
 
 	size_t GetNumberOfObjects() const;
 
-	Object* GetObject(const unsigned int& index) const;
+	std::shared_ptr<Object> GetObject(const unsigned int& index) const;
 	template <class T>
-	T* CreateObject(const glm::vec3& position = {});
+	std::shared_ptr<T> CreateObject();
 private:
-	ObjectList_t _objects = {};
+	std::vector<std::shared_ptr<Object>> _objects = {};
 };

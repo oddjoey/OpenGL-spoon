@@ -1,6 +1,6 @@
 #include "Shader.h"
 
-std::string getFileContents(const char* fileName)
+std::string Shader::getFileContents(const char* fileName)
 {
 	std::ifstream in(fileName, std::ios::binary);
 
@@ -18,7 +18,7 @@ std::string getFileContents(const char* fileName)
 	throw(errno);
 }
 
-void CheckCompileErrors(const unsigned int& shader, const char* type)
+void Shader::CheckCompileErrors(const unsigned int& shader, const char* type)
 {
 	// Stores status of compilation
 	GLint hasCompiled;
@@ -42,6 +42,19 @@ void CheckCompileErrors(const unsigned int& shader, const char* type)
 			std::cout << "SHADER_LINKING_ERROR for:" << type << "\n" << infoLog << std::endl;
 		}
 	}
+}
+
+GLint Shader::GetUniformLocation(const std::string& uniformName)
+{
+	if (uniformLocationCache.find(uniformName) != uniformLocationCache.end())
+		return uniformLocationCache[uniformName];
+
+	auto location = glGetUniformLocation(_ID, uniformName.c_str());
+	if (location == -1)
+		std::cout << "no uniform under " << uniformName << '\n';
+
+	uniformLocationCache[uniformName] = location;
+	return location;
 }
 
 Shader::Shader(const char* vertexFile, const char* fragmentFile)
@@ -71,9 +84,8 @@ Shader::Shader(const char* vertexFile, const char* fragmentFile)
 	glLinkProgram(_ID);
 	CheckCompileErrors(_ID, "PROGRAM");
 
-	// Clean up shaders since they're already loaded into shader program
-	glDeleteShader(_vertexShaderID);
-	glDeleteShader(_fragmentShaderID);
+	//BindAttribute(0, "position");
+	//BindAttribute(1, "texture");
 }
 
 Shader::~Shader()
@@ -81,14 +93,36 @@ Shader::~Shader()
 	Delete();
 }
 
-void Shader::Activate()
+void Shader::Activate() const
 {
 	glUseProgram(_ID);
 }
 
-void Shader::Delete()
+void Shader::Delete() const
 {
+	glDeleteShader(_vertexShaderID);
+	glDeleteShader(_fragmentShaderID);
 	glDeleteProgram(_ID);
+}
+
+void Shader::SetUniform1i(const std::string& name, const GLint& value)
+{
+	glUniform1i(GetUniformLocation(name), value);
+}
+
+void Shader::SetUniform1f(const std::string& name, const float& value)
+{
+	glUniform1f(GetUniformLocation(name), value);
+}
+
+void Shader::SetUniform4f(const std::string& name, const float& v0, const float& v1, const float& v2, const float& v3)
+{
+	glUniform4f(GetUniformLocation(name), v0, v1, v2, v3);
+}
+
+void Shader::BindAttribute(const GLuint& attribute, const char* variableName) const
+{
+	glBindAttribLocation(_ID, attribute, variableName);
 }
 
 GLuint Shader::GetID() const

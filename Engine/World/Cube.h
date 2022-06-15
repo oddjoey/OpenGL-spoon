@@ -4,8 +4,8 @@
 
 class Cube : public Object
 {
+	Cube() = delete;
 public:
-	Cube();
 	Cube(const size_t& index);
 	~Cube();
 };

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -82,13 +82,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\Projects\OpenGL-spoon\Libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Projects\OpenGL-spoon\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>D:\Projects\OpenGL-spoon\Libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Projects\OpenGL-spoon\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -130,7 +130,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -147,42 +147,46 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Bruno\Bruno.h" />
-    <ClInclude Include="Bruno\World\Camera.h" />
-    <ClInclude Include="Bruno\Graphics\EBO.h" />
-    <ClInclude Include="Bruno\Graphics\cWindowManager.h" />
-    <ClInclude Include="Bruno\Graphics\Shader.h" />
-    <ClInclude Include="Bruno\Graphics\Texture.h" />
-    <ClInclude Include="Bruno\Graphics\VBO.h" />
-    <ClInclude Include="Bruno\Graphics\VAO.h" />
-    <ClInclude Include="Bruno\Graphics\cInputManager.h" />
-    <ClInclude Include="Bruno\World\cWorldManager.h" />
-    <ClInclude Include="Bruno\World\cObjectManager.h" />
-    <ClInclude Include="Bruno\World\Object.h" />
-    <ClInclude Include="Bruno\World\Cube.h" />
+    <ClInclude Include="Engine\Graphics\cGraphicsManager.h" />
+    <ClInclude Include="Engine\Graphics\cModelManager.h" />
+    <ClInclude Include="Engine\Engine.h" />
+    <ClInclude Include="Engine\World\Camera.h" />
+    <ClInclude Include="Engine\Graphics\cWindowManager.h" />
+    <ClInclude Include="Engine\Graphics\Shader.h" />
+    <ClInclude Include="Engine\Graphics\Texture.h" />
+    <ClInclude Include="Engine\Graphics\VBO.h" />
+    <ClInclude Include="Engine\Graphics\VAO.h" />
+    <ClInclude Include="Engine\Graphics\cInputManager.h" />
+    <ClInclude Include="Engine\World\cWorldManager.h" />
+    <ClInclude Include="Engine\World\cObjectManager.h" />
+    <ClInclude Include="Engine\World\Object.h" />
+    <ClInclude Include="Engine\World\Cube.h" />
+    <ClInclude Include="Engine\Graphics\Model.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Bruno\Bruno.cpp" />
-    <ClCompile Include="Bruno\World\Camera.cpp" />
-    <ClCompile Include="Bruno\Graphics\EBO.cpp" />
-    <ClCompile Include="Bruno\Graphics\cInputManager.cpp" />
-    <ClCompile Include="Bruno\World\cWorldManager.cpp" />
-    <ClCompile Include="Bruno\World\cObjectManager.cpp" />
-    <ClCompile Include="Bruno\World\Cube.cpp" />
+    <ClCompile Include="Engine\Graphics\cGraphicsManager.cpp" />
+    <ClCompile Include="Engine\Graphics\cModelManager.cpp" />
+    <ClCompile Include="Engine\Engine.cpp" />
+    <ClCompile Include="Engine\World\Camera.cpp" />
+    <ClCompile Include="Engine\Graphics\cInputManager.cpp" />
+    <ClCompile Include="Engine\World\cWorldManager.cpp" />
+    <ClCompile Include="Engine\World\cObjectManager.cpp" />
+    <ClCompile Include="Engine\World\Cube.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Libraries\glad.c" />
-    <ClCompile Include="Bruno\Graphics\cWindowManager.cpp" />
-    <ClCompile Include="Bruno\Graphics\Texture.cpp" />
-    <ClCompile Include="Bruno\Graphics\VBO.cpp" />
+    <ClCompile Include="Engine\Graphics\cWindowManager.cpp" />
+    <ClCompile Include="Engine\Graphics\Texture.cpp" />
+    <ClCompile Include="Engine\Graphics\VBO.cpp" />
     <ClCompile Include="mainn.cpp" />
-    <ClCompile Include="Bruno\Graphics\Shader.cpp" />
-    <ClCompile Include="Bruno\Graphics\VAO.cpp" />
-    <ClCompile Include="Bruno\World\Object.cpp" />
+    <ClCompile Include="Engine\Graphics\Shader.cpp" />
+    <ClCompile Include="Engine\Graphics\VAO.cpp" />
+    <ClCompile Include="Engine\World\Object.cpp" />
     <ClCompile Include="Libraries\stb.cpp" />
+    <ClCompile Include="Engine\Graphics\Model.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="default.frag" />

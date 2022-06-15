@@ -7,12 +7,12 @@ void ProcessMouseCallback(GLFWwindow* window, double xpos, double ypos)
 	//static bool bFirst = true;
 	//if (bFirst)
 	//{
-	//	cBrunoEngine::GetGraphicsEngine()->GetCamera()->SetMousePosition(glm::vec2(xpos, ypos));
+	//	cEngineEngine::GetGraphicsEngine()->GetCamera()->SetMousePosition(glm::vec2(xpos, ypos));
 	//	bFirst = !bFirst;
 	//}
 
 
-	//auto pGM = cBrunoEngine::GetGraphicsEngine();
+	//auto pGM = cEngineEngine::GetGraphicsEngine();
 	//auto camera = pGM->GetCamera();
 
 	//double xOffset = xpos - camera->GetMousePositon().x;
@@ -104,15 +104,24 @@ void cWindowManager::CalculateDeltaTime()
 
 void cWindowManager::Render()
 {
-	auto worldManager = cWorldManager::Get();
-	auto objectManager = worldManager->GetObjectManager();
+	auto objectManager = cWorldManager::Get()->GetObjectManager();
+
+	// Color of background
+	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);													// STATE-SETTING FUNCTION
+	// Cleaning up the back buffer and depth buffers
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);										// STATE-USING FUNCTION
 
 	for (auto i = 0; i < objectManager->GetNumberOfObjects(); i++)
 	{
 		auto object = objectManager->GetObject(i);
-		auto position = object->GetPosition();
+		if (object == nullptr)
+			continue;
 
-		//printf("[%i] -> %f, %f, %f\n", i, position.x, position.y, position.z);
+		auto model = object->GetModel();
+		if (model == nullptr)
+			continue;
+
+		model->Render();
 	}
 
 	// Swaping the front for the back buffer
@@ -159,6 +168,7 @@ cWindowManager::cWindowManager()
 	// Tell GLFW that we're using version 3.3 of OpenGL
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+
 	// Core profile includes OpenGL's "modern functions"
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 }
@@ -176,4 +186,9 @@ std::shared_ptr<cWindowManager> cWindowManager::Get()
 		_instance = std::make_shared<cWindowManager>();
 
 	return _instance;
+}
+
+std::shared_ptr<cGraphicsManager> cWindowManager::GetGraphicsManager()
+{
+	return cGraphicsManager::Get();
 }

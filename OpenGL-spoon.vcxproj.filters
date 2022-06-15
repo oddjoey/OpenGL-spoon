@@ -21,48 +21,54 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bruno\Graphics\cWindowManager.h">
+    <ClInclude Include="Engine\Graphics\cWindowManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bruno\Graphics\Shader.h">
+    <ClInclude Include="Engine\Graphics\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bruno\Graphics\VBO.h">
+    <ClInclude Include="Engine\Graphics\VBO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bruno\Graphics\EBO.h">
+    <ClInclude Include="Engine\Graphics\VAO.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bruno\Graphics\VAO.h">
+    <ClInclude Include="Engine\Graphics\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bruno\Graphics\Texture.h">
+    <ClInclude Include="Engine\World\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bruno\World\Camera.h">
+    <ClInclude Include="Engine\Graphics\cInputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bruno\Bruno.h">
+    <ClInclude Include="Engine\World\cWorldManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bruno\Graphics\cInputManager.h">
+    <ClInclude Include="Engine\World\cObjectManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bruno\World\cWorldManager.h">
+    <ClInclude Include="Engine\World\Object.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bruno\World\cObjectManager.h">
+    <ClInclude Include="Engine\World\Cube.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bruno\World\Object.h">
+    <ClInclude Include="Engine\Engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bruno\World\Cube.h">
+    <ClInclude Include="Engine\Graphics\cModelManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\Model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Graphics\cGraphicsManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Bruno\Graphics\cWindowManager.cpp">
+    <ClCompile Include="Engine\Graphics\cWindowManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mainn.cpp">
@@ -71,46 +77,52 @@
     <ClCompile Include="Libraries\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bruno\Graphics\Shader.cpp">
+    <ClCompile Include="Engine\Graphics\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bruno\Graphics\VBO.cpp">
+    <ClCompile Include="Engine\Graphics\VBO.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bruno\Graphics\EBO.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Bruno\Graphics\VAO.cpp">
+    <ClCompile Include="Engine\Graphics\VAO.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Libraries\stb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bruno\Graphics\Texture.cpp">
+    <ClCompile Include="Engine\Graphics\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bruno\World\Camera.cpp">
+    <ClCompile Include="Engine\World\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bruno\Bruno.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Bruno\Graphics\cInputManager.cpp">
+    <ClCompile Include="Engine\Graphics\cInputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bruno\World\cWorldManager.cpp">
+    <ClCompile Include="Engine\World\cWorldManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bruno\World\cObjectManager.cpp">
+    <ClCompile Include="Engine\World\cObjectManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bruno\World\Object.cpp">
+    <ClCompile Include="Engine\World\Object.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Bruno\World\Cube.cpp">
+    <ClCompile Include="Engine\World\Cube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\cModelManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\Model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Graphics\cGraphicsManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -5,19 +5,10 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include <stb/stb_image.h>
 #include <glm/glm/glm.hpp>
-#include <glm/glm/gtc/matrix_transform.hpp>
-#include <glm/glm/gtc/type_ptr.hpp>
 
-#include "Shader.h"
-#include "Texture.h"
-#include "VBO.h"
-#include "VAO.h"
-#include "EBO.h"
-
+#include "cGraphicsManager.h"
 #include "cInputManager.h"
-
 #include "..\World\cWorldManager.h"
 
 // Mouse positon callback
@@ -36,6 +27,7 @@ class cWindowManager
 	static std::shared_ptr<cWindowManager> _instance;
 public:
 	static std::shared_ptr<cWindowManager> Get();
+	std::shared_ptr<cGraphicsManager> GetGraphicsManager();
 
 	friend void ProcessMouseCallback(GLFWwindow* window, double xpos, double ypos);
 

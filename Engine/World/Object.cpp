@@ -1,10 +1,5 @@
 #include "Object.h"
 
-Object::Object()
-{
-
-}
-
 Object::Object(const size_t& index)
 {
 	_index = index;
@@ -27,5 +22,18 @@ glm::vec3 Object::GetPosition() const
 Object* Object::SetPosition(const glm::vec3& newPosition)
 {
 	_position = newPosition;
+	return this;
+}
+
+std::shared_ptr<Model> Object::GetModel() const
+{
+	return _model;
+}
+
+Object* Object::SetModel(const std::shared_ptr<Model>& model)
+{
+	if (model != nullptr)
+		_model = model;
+
 	return this;
 }

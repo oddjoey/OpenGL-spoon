@@ -1,11 +1,11 @@
-//#include "Bruno/Bruno.h"
+//#include "Engine/Engine.h"
 //
 //int mainn()
 //{
-//	auto x = cBrunoEngine::GetEngine();
+//	auto x = cEngineEngine::GetEngine();
 //
 //	// Grab instance of our graphics manager
-//	auto pGM = cBrunoEngine::GetGraphicsEngine();
+//	auto pGM = cEngineEngine::GetGraphicsEngine();
 //
 //	// Create window and check if sucessful
 //	if (!pGM->CreateWindow())

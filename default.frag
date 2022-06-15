@@ -1,12 +1,12 @@
 #version 330 core
 
-// Input from previous shader (vertex)
-in vec3 vertexColor;
+in vec2 passTextureCoords;
 
-// Fragment shaders NEED a color/vec4 output to produce a final pixel color
 out vec4 colorOutput;
+
+uniform sampler2D textureSampler;
 
 void main()
 {
-   colorOutput = vec4(vertexColor, 1.0f);
+   colorOutput = texture(textureSampler, passTextureCoords);
 }
